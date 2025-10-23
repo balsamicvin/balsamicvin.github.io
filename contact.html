@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q Tech Service Inquiry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .service-checkbox:checked + .service-label {
+            @apply ring-2 ring-indigo-500 bg-indigo-50;
+        }
+        /* Custom modal styles */
+        #submission-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            animation: slide-down 0.3s ease-out;
+        }
+        @keyframes slide-down {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Contact Form Card -->
+    <div class="w-full max-w-4xl bg-white shadow-xl rounded-2xl p-6 sm:p-10 border border-gray-100">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Service Inquiry</h1>
+        <p class="text-gray-500 mb-8">Tell us what you're interested in, and we'll reach out with a tailored plan.</p>
+
+        <form id="inquiry-form" class="space-y-6">
+            <!-- Contact Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Work Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                </div>
+            </div>
+
+            <!-- Service Selection -->
+            <div class="pt-4">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Select Your Primary Interest(s)</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                    <!-- Option 1: Digital Maintenance - UPDATED LABEL HERE -->
+                    <div class="relative">
+                        <input type="checkbox" id="service-maintenance" name="services" value="Digital Maintenance" class="hidden service-checkbox">
+                        <label for="service-maintenance" class="service-label flex flex-col justify-between h-full p-5 border border-gray-300 rounded-xl cursor-pointer hover:border-indigo-500 transition duration-200 shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Digital Maintenance</h3>
+                                <p class="text-sm text-gray-500">Recurring service for security, patching, and stability.</p>
+                            </div>
+                            <span class="mt-2 text-xs font-semibold text-indigo-600">LONG-TERM STABILITY</span>
+                        </label>
+                    </div>
+
+                    <!-- Option 2: Technical Training -->
+                    <div class="relative">
+                        <input type="checkbox" id="service-training" name="services" value="Technical Training" class="hidden service-checkbox">
+                        <label for="service-training" class="service-label flex flex-col justify-between h-full p-5 border border-gray-300 rounded-xl cursor-pointer hover:border-indigo-500 transition duration-200 shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Technical Training</h3>
+                                <p class="text-sm text-gray-500">Workshops or content for internal team upskilling.</p>
+                            </div>
+                            <span class="mt-2 text-xs font-semibold text-indigo-600">HIGH-VALUE PROJECTS</span>
+                        </label>
+                    </div>
+
+                    <!-- Option 3: New Development -->
+                    <div class="relative">
+                        <input type="checkbox" id="service-development" name="services" value="New Development" class="hidden service-checkbox">
+                        <label for="service-development" class="service-label flex flex-col justify-between h-full p-5 border border-gray-300 rounded-xl cursor-pointer hover:border-indigo-500 transition duration-200 shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">New Development</h3>
+                                <p class="text-sm text-gray-500">Starting a brand new application or major feature.</p>
+                            </div>
+                            <span class="mt-2 text-xs font-semibold text-indigo-600">FULL PROJECT WORK</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance Tier Selection (Conditional/Related) -->
+            <div id="maintenance-tier-section" class="space-y-4 p-4 border border-indigo-200 rounded-xl bg-indigo-50 hidden">
+                <h3 class="text-md font-semibold text-indigo-800">Maintenance Details</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-sm">
+                        <input type="radio" name="maintenance-tier" value="Essential" class="text-indigo-600 focus:ring-indigo-500">
+                        <span class="text-sm font-medium text-gray-700">Essential Tier</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-sm">
+                        <input type="radio" name="maintenance-tier" value="Standard" class="text-indigo-600 focus:ring-indigo-500" checked>
+                        <span class="text-sm font-medium text-gray-700">Standard Tier (Recommended)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-sm">
+                        <input type="radio" name="maintenance-tier" value="Premium" class="text-indigo-600 focus:ring-indigo-500">
+                        <span class="text-sm font-medium text-gray-700">Premium Tier</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Details Textarea -->
+            <div>
+                <label for="details" class="block text-sm font-medium text-gray-700 mb-1">Project Details or Questions</label>
+                <textarea id="details" name="details" rows="4" placeholder="Briefly describe your current application, technologies used, or specific training needs..."
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                Submit Inquiry
+            </button>
+        </form>
+    </div>
+
+    <!-- Submission Modal (Custom Message Box) -->
+    <div id="submission-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4">
+        <div class="modal-content bg-white p-6 rounded-xl shadow-2xl w-full max-w-sm">
+            <h3 class="text-xl font-bold text-indigo-600 mb-3">Thank You!</h3>
+            <p class="text-gray-700 mb-4">Your inquiry has been received. Here is the data we collected, which will help us prepare for our consultation:</p>
+            <div id="modal-content-data" class="bg-gray-50 p-3 rounded-lg text-sm overflow-x-auto mb-4">
+                <!-- Injected form data goes here -->
+            </div>
+            <button onclick="closeModal()" class="w-full py-2 px-4 rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('inquiry-form');
+            const maintenanceCheckbox = document.getElementById('service-maintenance');
+            const maintenanceTierSection = document.getElementById('maintenance-tier-section');
+            const modal = document.getElementById('submission-modal');
+            const modalContentData = document.getElementById('modal-content-data');
+
+            // --- Firestore Setup (Not used for this simple form, but boilerplate included) ---
+            /*
+            // const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+            // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+            // import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+            // const app = firebaseConfig.apiKey ? initializeApp(firebaseConfig) : null;
+            // const db = app ? getFirestore(app) : null;
+            // const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            */
+
+            // Function to show/hide the maintenance tier section
+            maintenanceCheckbox.addEventListener('change', () => {
+                maintenanceTierSection.classList.toggle('hidden', !maintenanceCheckbox.checked);
+            });
+
+            // Handle form submission
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // 1. Gather Data
+                const formData = new FormData(form);
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    if (key === 'services') {
+                        // Handle multiple checkboxes for services
+                        data[key] = data[key] ? [...data[key], value] : [value];
+                    } else if (key === 'maintenance-tier' && !maintenanceCheckbox.checked) {
+                        // Skip maintenance-tier if maintenance is not selected
+                        continue;
+                    } else {
+                        data[key] = value;
+                    }
+                }
+
+                // 2. Prepare Display Data for Modal
+                let displayHtml = '';
+                displayHtml += `<p><strong>Name:</strong> ${data.name || 'N/A'}</p>`;
+                displayHtml += `<p><strong>Email:</strong> ${data.email || 'N/A'}</p>`;
+                displayHtml += `<p><strong>Services:</strong> ${data.services ? data.services.join(', ') : 'None'}</p>`;
+
+                if (data['maintenance-tier']) {
+                    displayHtml += `<p><strong>Maintenance Tier:</strong> <span class="font-bold text-indigo-600">${data['maintenance-tier']}</span></p>`;
+                }
+                displayHtml += `<p class="mt-2"><strong>Details:</strong><br>${data.details ? data.details.replace(/\n/g, '<br>') : 'None provided'}</p>`;
+
+                modalContentData.innerHTML = displayHtml;
+
+                // 3. Show Modal
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+
+                // 4. Reset Form (Optional)
+                form.reset();
+                maintenanceTierSection.classList.add('hidden'); // Hide the tier selection after reset
+            });
+        });
+
+        function closeModal() {
+            const modal = document.getElementById('submission-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
