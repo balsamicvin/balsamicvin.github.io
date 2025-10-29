@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q Tech Digital LLC - Full Stack Consulting</title>
+    <title>Q Tech Digital LLC - Full Stack Consulting, Cloud Security & Development</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load React, ReactDOM, and Babel -->
@@ -52,6 +52,10 @@
             <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 2a2 2 0 0 0-2 2v3h-4V4a2 2 0 0 0-2-2h-1v2H5v3h14V4a2 2 0 0 0-2-2z"/>
             </svg>
+        );
+
+        const BookIcon = (props) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-pen-icon lucide-notebook-pen"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>
         );
 
         const ExternalLinkIcon = (props) => (
@@ -113,6 +117,7 @@
             const navItems = [
                 { name: 'Home', view: 'home', Icon: HomeIcon, color: 'text-blue-600', activeBg: 'bg-blue-100' },
                 { name: 'Portfolio', view: 'portfolio', Icon: CodeIcon, color: 'text-orange-600', activeBg: 'bg-orange-100' },
+                { name: 'Services', view: 'services', Icon: BookIcon, color: 'text-orange-600', activeBg: 'bg-orange-100' },
                 { name: 'Contact Us', view: 'contact', Icon: PhoneIcon, color: 'text-green-600', activeBg: 'bg-green-100' },
                 { name: 'About', view: 'about', Icon: BriefcaseIcon, color: 'text-indigo-600', activeBg: 'bg-indigo-100' },
             ];
@@ -150,11 +155,11 @@
         const HomeView = () => (
             <div className="p-8 bg-white">
                 <h2 className="text-5xl font-extrabold text-blue-800 mb-4 tracking-tight leading-tight">
-                    Build the future of your business, one **project** at a time.
+                    Your Partner for End-to-End Solutions Built to Scale.
                 </h2>
                 
                 <p className="text-lg text-gray-600 mb-8 border-l-4 border-blue-400 pl-4 py-1">
-                    **Q Tech Digital LLC** is your partner for **end-to-end digital solutions,** providing **full-stack consulting, development, and expert project management.** Our goal is delivering **robust, scalable web applications,** whether you need a quick-start template or a custom-built scope.
+                    Q Tech Digital provides full-stack consulting, expert project management, and development to deliver robust web applications. From quick-start templates to custom, secured cloud deployments, we cover your entire digital lifecycle. Contact us now to get started!
                 </p>
                 
                 <div className="grid md:grid-cols-3 gap-6">
@@ -162,13 +167,21 @@
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Consulting</h3>
                         <p className="text-gray-600">Strategic planning and architectural guidance to ensure a solid foundation for your digital transformation.</p>
                     </div>
-                     <div className="p-6 rounded-xl bg-blue-50 border border-blue-200 shadow-md">
-                        <h3 className="text-xl font-semibold text-blue-600 mb-2">Development</h3>
-                        <p className="text-gray-600">Full-stack engineering of robust, high-performance web and mobile applications tailored to your business needs.</p>
-                    </div>
                     <div className="p-6 rounded-xl bg-blue-50 border border-blue-200 shadow-md">
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Project Management</h3>
                         <p className="text-gray-600">Agile methodologies to ensure projects are delivered on time, within budget, and to specification.</p>
+                    </div>
+                     <div className="p-6 rounded-xl bg-blue-50 border border-blue-200 shadow-md">
+                        <h3 className="text-xl font-semibold text-blue-600 mb-2">Custom Web Application Development</h3>
+                        <p className="text-gray-600">We engineer bespoke, high-performance web applications - from complex B2B platforms and customer portals, to internal business intelligence tools.</p>
+                    </div>
+                    <div className="p-6 rounded-xl bg-blue-50 border border-blue-200 shadow-md">
+                        <h3 className="text-xl font-semibold text-blue-600 mb-2">Cloud Strategy & Enterprise Security</h3>
+                        <p className="text-gray-600">Build, migrate, and secure scalable infrastructure on AWS, Azure, or GCP. We fortify your assets with proactive threat modeling and compliance solutions.</p>
+                    </div>
+                    <div className="p-6 rounded-xl bg-blue-50 border border-blue-200 shadow-md">
+                        <h3 className="text-xl font-semibold text-blue-600 mb-2">Proactive Maintenance & Retainers</h3>
+                        <p className="text-gray-600">Ensure long-term health with dedicated support, continuous monitoring, security updates, and feature enhancements.</p>
                     </div>
                 </div>
             </div>
@@ -254,7 +267,13 @@
             );
         };
 
-        // --- View 3: Contact Page Component ---
+        // --- View 3: Services Page Component ---
+        const ServicesVew = () => {}
+
+
+
+
+        // --- View 4: Contact Page Component ---
         const ContactView = () => {
             // State to hold form input data
             const [formData, setFormData] = useState({
@@ -309,7 +328,7 @@
                 <div className="p-8 bg-gray-50">
                     <h2 className="text-4xl font-extrabold text-green-700 mb-4">Let's Discuss Your Project</h2>
                     <p className="text-gray-600 mb-6">
-                        Tell us about your digital goals, and we'll provide a roadmap for success. Required fields are marked with an asterisk (*).
+                        Tell us about your digital vision, and we'll provide a roadmap for success. Required fields are marked with an asterisk (*).
                     </p>
                     
                     <form 
@@ -400,7 +419,7 @@
             );
         };
 
-        // --- View 4: About Page Component ---
+        // --- View 5: About Page Component ---
         const AboutView = () => (
             <div className="p-8 bg-white">
                 <h2 className="text-4xl font-extrabold text-indigo-700 mb-4">The Q Tech Digital Difference</h2>
@@ -484,3 +503,4 @@
     </script>
 </body>
 </html>
+
